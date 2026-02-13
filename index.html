@@ -9,7 +9,13 @@
   .wrap{max-width:1200px;margin:0 auto;padding:12px}
   .controls{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
   .block{background:#ffffff;border-radius:12px;padding:12px}
-  .block h3{margin:0 0 10px 0;font-size:14px;font-weight:700}
+  .block h3{
+    margin:0 0 10px 0;
+    font-size:14px;
+    font-weight:700;
+    color:#022844;
+    letter-spacing:.5px;
+  }
 
   .picker{display:flex;gap:12px;flex-wrap:wrap}
 
@@ -40,21 +46,21 @@
 
   .swatchBox:hover img{
     transform:scale(1.06);
-    border-color:#4da6ff;
+    border-color:#022844;
   }
-  .block h3{
-margin:0 0 10px 0;
-font-size:14px;
-font-weight:700;
-color:#022844;
-letter-spacing:.5px;
-}
+
   .swatchBox.active img{
-    border-color:#4da6ff;
+    border-color:#022844;
   }
 
   label{display:flex;gap:8px;align-items:center}
-  select{padding:8px;border-radius:10px;border:none}
+  select{
+    padding:8px;
+    border-radius:10px;
+    border:1px solid #d7e3ee;
+    background:#fff;
+    color:#022844;
+  }
 
   .stage{position:relative;margin-top:12px;border-radius:12px;overflow:hidden}
   .stage img{width:100%;height:auto;display:block}
@@ -72,37 +78,37 @@ letter-spacing:.5px;
 
       <div class="picker" id="plasterPicker">
 
-        <div class="swatchBox active" data-plaster="img/plaster_nassau.png">
+        <div class="swatchBox active" data-src="img/plaster_nassau.png">
           <img src="img/nassau_reserve.png" alt="Nassau Reserve">
           <span>Nassau<br>Reserve</span>
         </div>
 
-        <div class="swatchBox" data-plaster="img/plaster_hawaiian.png">
+        <div class="swatchBox" data-src="img/plaster_hawaiian.png">
           <img src="img/Hawaiian.jpg" alt="Hawaiian">
           <span>Hawaiian</span>
         </div>
 
-        <div class="swatchBox" data-plaster="img/plaster_azure.png">
+        <div class="swatchBox" data-src="img/plaster_azure.png">
           <img src="img/Azure_plaster.jpg" alt="Azure">
           <span>Azure</span>
         </div>
 
-        <div class="swatchBox" data-plaster="img/plaster_kahena.png">
+        <div class="swatchBox" data-src="img/plaster_kahena.png">
           <img src="img/kahena_reserve.jpg" alt="Kahena Reserve">
           <span>Kahena<br>Reserve</span>
         </div>
 
-        <div class="swatchBox" data-plaster="img/plaster_doubleskyblue.png">
+        <div class="swatchBox" data-src="img/plaster_doubleskyblue.png">
           <img src="img/Double_Sky_Blue.jpg" alt="Double Sky Blue">
           <span>Double Sky<br>Blue</span>
         </div>
 
-        <div class="swatchBox" data-plaster="img/plaster_aquaclear.png">
+        <div class="swatchBox" data-src="img/plaster_aquaclear.png">
           <img src="img/Aqua_Clear.jpg" alt="Aqua Clear">
           <span>Aqua<br>Clear</span>
         </div>
 
-        <div class="swatchBox" data-plaster="img/plaster_skyblue.png">
+        <div class="swatchBox" data-src="img/plaster_skyblue.png">
           <img src="img/Sky_Blue.jpg" alt="Sky Blue">
           <span>Sky<br>Blue</span>
         </div>
@@ -112,18 +118,60 @@ letter-spacing:.5px;
 
     <div class="block">
       <h3>Tile</h3>
-      <label>
-        <select id="tile">
-          <option value="img/tile_NPT_Equinox_IcyTeal.png">NPT Equinox, IcyTeal</option>
-          <option value="img/tile_NPT_Equinox_DarkBlue.png">NPT Equinox, DarkBlue</option>
-        </select>
-      </label>
+
+      <div class="picker" id="tilePicker">
+
+        <div class="swatchBox active" data-src="img/tile_NPT_Equinox_IcyTeal.png">
+          <img src="img/tile_equinoxictyeal.png" alt="Equinox IcyTeal">
+          <span>Equinox<br>IcyTeal</span>
+        </div>
+
+        <div class="swatchBox" data-src="img/tile_NPT_Equinox_DarkBlue.png">
+          <img src="img/tile_equinoxdarkblue.png" alt="Equinox DarkBlue">
+          <span>Equinox<br>DarkBlue</span>
+        </div>
+
+        <div class="swatchBox" data-src="img/tile_NPT_Equinox_BlackSteel.png">
+          <img src="img/tile_NPT_Equinox_BlackSteel.png" alt="Equinox BlackSteel">
+          <span>Equinox<br>BlackSteel</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>Paver</h3>
+
+      <div class="picker" id="paverPicker">
+
+        <div class="swatchBox active" data-src="img/paver_atlanticblue.png">
+          <img src="img/atlanticblue.png" alt="Atlantic Blue">
+          <span>Atlantic<br>Blue</span>
+        </div>
+
+        <div class="swatchBox" data-src="img/paver_greypearl.png">
+          <img src="img/greypearl.png" alt="Grey Pearl">
+          <span>Grey<br>Pearl</span>
+        </div>
+
+        <div class="swatchBox" data-src="img/paver_tahoe.png">
+          <img src="img/tahoe.png" alt="Tahoe">
+          <span>Tahoe</span>
+        </div>
+
+        <div class="swatchBox" data-src="img/paver_ivory.png">
+          <img src="img/ivory.png" alt="Ivory">
+          <span>Ivory</span>
+        </div>
+
+      </div>
     </div>
 
   </div>
 
   <div class="stage">
     <img src="img/base.jpg" alt="">
+    <img id="paverLayer" class="layer" src="img/paver_atlanticblue.png" alt="">
     <img id="plasterLayer" class="layer" src="img/plaster_nassau.png" alt="">
     <img id="tileLayer" class="layer" src="img/tile_NPT_Equinox_IcyTeal.png" alt="">
   </div>
@@ -133,26 +181,32 @@ letter-spacing:.5px;
 <script>
   const plasterLayer = document.getElementById("plasterLayer");
   const tileLayer = document.getElementById("tileLayer");
-  const tileSel = document.getElementById("tile");
-  const plasterPicker = document.getElementById("plasterPicker");
+  const paverLayer = document.getElementById("paverLayer");
 
-  plasterPicker.addEventListener("click", (e) => {
-    const box = e.target.closest(".swatchBox");
-    if(!box) return;
+  function wirePicker(pickerId, layerEl){
+    const picker = document.getElementById(pickerId);
 
-    plasterLayer.src = box.getAttribute("data-plaster");
+    picker.addEventListener("click", (e) => {
+      const box = e.target.closest(".swatchBox");
+      if(!box) return;
 
-    plasterPicker.querySelectorAll(".swatchBox")
-      .forEach(s => s.classList.remove("active"));
+      layerEl.src = box.getAttribute("data-src");
 
-    box.classList.add("active");
-  });
+      picker.querySelectorAll(".swatchBox").forEach(s => s.classList.remove("active"));
+      box.classList.add("active");
+    });
+  }
 
-  tileSel.addEventListener("change", (e) => {
-    tileLayer.src = e.target.value;
-  });
+  wirePicker("plasterPicker", plasterLayer);
+  wirePicker("tilePicker", tileLayer);
+  wirePicker("paverPicker", paverLayer);
 
   [
+    "img/paver_atlanticblue.png",
+    "img/paver_greypearl.png",
+    "img/paver_tahoe.png",
+    "img/paver_ivory.png",
+
     "img/plaster_nassau.png",
     "img/plaster_hawaiian.png",
     "img/plaster_azure.png",
@@ -160,8 +214,10 @@ letter-spacing:.5px;
     "img/plaster_doubleskyblue.png",
     "img/plaster_aquaclear.png",
     "img/plaster_skyblue.png",
+
     "img/tile_NPT_Equinox_IcyTeal.png",
-    "img/tile_NPT_Equinox_DarkBlue.png"
+    "img/tile_NPT_Equinox_DarkBlue.png",
+    "img/tile_NPT_Equinox_BlackSteel.png"
   ].forEach(src => { const i = new Image(); i.src = src; });
 </script>
 
