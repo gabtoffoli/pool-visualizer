@@ -3,62 +3,100 @@
 <head>
 <meta charset="utf-8">
 <title>Pool Visualizer</title>
+
 <style>
-body{margin:0;background:#111;color:#fff;font-family:Arial}
-.controls{padding:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.stage{position:relative;max-width:1200px;margin:0 auto}
-.stage img{width:100%;height:auto;display:block}
-.layer{position:absolute;left:0;top:0;width:100%;height:auto;pointer-events:none}
-label{display:flex;gap:8px;align-items:center}
-select{padding:6px}
+  body{margin:0;background:#111;color:#fff;font-family:Arial}
+  .wrap{max-width:1200px;margin:0 auto;padding:12px}
+  .controls{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+  .block{background:#1b1b1b;border-radius:12px;padding:12px}
+  .block h3{margin:0 0 10px 0;font-size:14px;font-weight:700}
+
+  .picker{display:flex;gap:12px;flex-wrap:wrap}
+  .swatch{
+    width:86px;height:86px;object-fit:cover;cursor:pointer;
+    border-radius:12px;border:3px solid transparent;
+    transition:transform .15s,border-color .15s;
+  }
+  .swatch:hover{transform:scale(1.06);border-color:#4da6ff}
+  .swatch.active{border-color:#4da6ff}
+
+  label{display:flex;gap:8px;align-items:center}
+  select{padding:8px;border-radius:10px;border:none}
+  .stage{position:relative;margin-top:12px;border-radius:12px;overflow:hidden}
+  .stage img{width:100%;height:auto;display:block}
+  .layer{position:absolute;left:0;top:0;width:100%;height:auto;pointer-events:none}
 </style>
 </head>
+
 <body>
+<div class="wrap">
 
-<div class="controls">
-  <label>Plaster
-    <select id="plaster">
-      <option value="img/plaster_nassau.png">Nassau Reserve</option>
-      <option value="img/plaster_hawaiian.png">Hawaiian</option>
-      <option value="img/plaster_azure.png">Azure</option>
-      <option value="img/plaster_kahena.png">Kahena Reserve</option>
-      <option value="img/plaster_doubleskyblue.png">Double Sky Blue</option>
-      <option value="img/plaster_aquaclear.png">Aqua Clear</option>
-      <option value="img/plaster_skyblue.png">Sky Blue</option>
-    </select>
-  </label>
+  <div class="controls">
 
-  <label>Tile
-    <select id="tile">
-      <option value="img/tile_NPT_Equinox_IcyTeal.png">NPT Equinox, IcyTeal</option>
-      <option value="img/tile_NPT_Equinox_DarkBlue.png">NPT Equinox, DarkBlue</option>
-    </select>
-  </label>
+    <div class="block">
+      <h3>Plaster</h3>
+      <div class="picker" id="plasterPicker">
+        <img class="swatch active" src="img/nassau_reserve.png" data-plaster="img/plaster_nassau.png" alt="Nassau Reserve">
+        <img class="swatch" src="img/Hawaiian.jpg" data-plaster="img/plaster_hawaiian.png" alt="Hawaiian">
+        <img class="swatch" src="img/Azure_plaster.jpg" data-plaster="img/plaster_azure.png" alt="Azure">
+        <img class="swatch" src="img/kahena_reserve.jpg" data-plaster="img/plaster_kahena.png" alt="Kahena Reserve">
+        <img class="swatch" src="img/Double_Sky_Blue.jpg" data-plaster="img/plaster_doubleskyblue.png" alt="Double Sky Blue">
+        <img class="swatch" src="img/Aqua_Clear.jpg" data-plaster="img/plaster_aquaclear.png" alt="Aqua Clear">
+        <img class="swatch" src="img/Sky_Blue.jpg" data-plaster="img/plaster_skyblue.png" alt="Sky Blue">
+      </div>
+    </div>
 
-  <label>Paver
-    <select id="paver">
-      <option value="img/mask_paver.png">Test</option>
-    </select>
-  </label>
-</div>
+    <div class="block">
+      <h3>Tile</h3>
+      <label>
+        <select id="tile">
+          <option value="img/tile_NPT_Equinox_IcyTeal.png">NPT Equinox, IcyTeal</option>
+          <option value="img/tile_NPT_Equinox_DarkBlue.png">NPT Equinox, DarkBlue</option>
+        </select>
+      </label>
+    </div>
 
-<div class="stage">
-  <img src="img/base.jpg" alt="">
-  <img id="plasterLayer" class="layer" src="img/plaster_nassau.png" alt="">
-  <img id="tileLayer" class="layer" src="img/tile_NPT_Equinox_IcyTeal.png" alt="">
+  </div>
+
+  <div class="stage">
+    <img src="img/base.jpg" alt="">
+    <img id="plasterLayer" class="layer" src="img/plaster_nassau.png" alt="">
+    <img id="tileLayer" class="layer" src="img/tile_NPT_Equinox_IcyTeal.png" alt="">
+  </div>
+
 </div>
 
 <script>
-const plasterSel = document.getElementById("plaster");
-const tileSel = document.getElementById("tile");
+  const plasterLayer = document.getElementById("plasterLayer");
+  const tileLayer = document.getElementById("tileLayer");
+  const tileSel = document.getElementById("tile");
+  const plasterPicker = document.getElementById("plasterPicker");
 
-plasterSel.addEventListener("change", e=>{
-  document.getElementById("plasterLayer").src = e.target.value;
-});
+  plasterPicker.addEventListener("click", (e) => {
+    const img = e.target.closest("img[data-plaster]");
+    if(!img) return;
 
-tileSel.addEventListener("change", e=>{
-  document.getElementById("tileLayer").src = e.target.value;
-});
+    plasterLayer.src = img.getAttribute("data-plaster");
+
+    plasterPicker.querySelectorAll(".swatch").forEach(s => s.classList.remove("active"));
+    img.classList.add("active");
+  });
+
+  tileSel.addEventListener("change", (e) => {
+    tileLayer.src = e.target.value;
+  });
+
+  [
+    "img/plaster_nassau.png",
+    "img/plaster_hawaiian.png",
+    "img/plaster_azure.png",
+    "img/plaster_kahena.png",
+    "img/plaster_doubleskyblue.png",
+    "img/plaster_aquaclear.png",
+    "img/plaster_skyblue.png",
+    "img/tile_NPT_Equinox_IcyTeal.png",
+    "img/tile_NPT_Equinox_DarkBlue.png"
+  ].forEach(src => { const i = new Image(); i.src = src; });
 </script>
 
 </body>
