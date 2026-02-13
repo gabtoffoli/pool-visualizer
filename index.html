@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pool Visualizer</title>
+<style>
+body{margin:0;background:#111;color:#fff;font-family:Arial}
+.controls{padding:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.stage{position:relative;max-width:1200px;margin:0 auto}
+.stage img{width:100%;height:auto;display:block}
+.layer{position:absolute;left:0;top:0;width:100%;height:auto;pointer-events:none}
+label{display:flex;gap:8px;align-items:center}
+select{padding:6px}
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <label>Plaster
+    <select id="plaster">
+      <option value="img/plaster_nassau.png">Nassau</option>
+      <option value="img/plaster_hawaiian.png">Hawaiian</option>
+      <option value="img/plaster_azure.png">Azure</option>
+    </select>
+  </label>
+
+  <label>Tile
+    <select id="tile">
+      <option value="img/tile_NPT_Equinox_IcyTeal.png">NPT Equinox, IcyTeal</option>
+      <option value="img/tile_NPT_Equinox_DarkBlue.png">NPT Equinox, DarkBlue</option>
+    </select>
+  </label>
+
+  <label>Paver
+    <select id="paver">
+      <option value="img/mask_paver.png">Test</option>
+    </select>
+  </label>
+</div>
+
+<div class="stage">
+  <img src="img/base.jpg" alt="">
+  <img id="plasterLayer" class="layer" src="img/plaster_nassau.png" alt="">
+  <img id="tileLayer" class="layer" src="img/tile_NPT_Equinox_IcyTeal.png" alt="">
+</div>
+
+<script>
+const plasterSel = document.getElementById("plaster");
+const tileSel = document.getElementById("tile");
+
+plasterSel.addEventListener("change", e=>{
+  document.getElementById("plasterLayer").src = e.target.value;
+});
+
+tileSel.addEventListener("change", e=>{
+  document.getElementById("tileLayer").src = e.target.value;
+});
+</script>
+
+</body>
+</html>
